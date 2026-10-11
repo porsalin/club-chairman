@@ -1,0 +1,36 @@
+/* Club Chairman · Stadium designer */
+#sd-stage{position:relative;height:min(52vh,460px);min-height:300px;border-radius:16px;overflow:hidden;background:#0a1a12;touch-action:none;margin:-2px 0 10px;box-shadow:0 8px 28px #0007}
+#sd-canvas,#sd-canvas canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
+.sd-load{position:absolute;inset:0;display:grid;place-items:center;color:var(--mut)}
+#sd-tools{position:absolute;top:8px;right:8px;display:flex;gap:6px;z-index:2}
+#sd-tools button,#sd-views button{background:#0b1220c7;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border:1px solid #ffffff22;color:#fff;border-radius:11px;min-width:38px;height:38px;font-size:16px;font-weight:700;padding:0 8px}
+#sd-tools button.on{border-color:var(--acc);box-shadow:0 0 0 1px var(--acc) inset}
+#sd-views{position:absolute;top:52px;right:8px;display:none;flex-direction:column;gap:5px;z-index:3;max-height:calc(100% - 60px);overflow:auto}#sd-views.on{display:flex}
+#sd-views button{font-size:13px;height:34px;text-align:left}.sd-q{background:#0b1220d9;border-radius:10px;padding:5px;font-size:11px;color:var(--mut);display:flex;gap:3px;align-items:center}.sd-q button{height:26px!important;min-width:0!important;font-size:11px!important;padding:0 6px!important}.sd-q button.on{border-color:var(--acc)!important}
+.sd-hint{position:absolute;left:10px;bottom:8px;font-size:11px;color:#ffffffb0;text-shadow:0 1px 3px #000;pointer-events:none}
+body.sd-full #sd-stage{position:fixed;inset:0;height:auto;border-radius:0;margin:0;z-index:20}
+body.sd-full #sd-tools{top:calc(env(safe-area-inset-top) + 8px)}
+#sd-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-bottom:10px}
+.sd-st{background:var(--card2);border-radius:11px;padding:7px 8px;position:relative;min-width:0}.sd-st small{color:var(--mut);font-size:10.5px;display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.sd-st b{font-size:15px;display:block;white-space:nowrap}
+.sd-st i{font-style:normal;font-size:10.5px;font-weight:700}.sd-st i.up{color:var(--acc)}.sd-st i.dn{color:var(--bad)}.sd-st.wide{grid-column:span 4}
+#sd-cats{display:flex;gap:6px;overflow-x:auto;padding:2px 0 10px;scrollbar-width:none;position:sticky;top:calc(env(safe-area-inset-top) + 46px);z-index:4;background:var(--bg)}#sd-cats::-webkit-scrollbar{display:none}
+#sd-cats button{flex:none;background:var(--card2);border:1px solid #ffffff12;color:var(--txt);border-radius:12px;padding:7px 11px;font-size:12.5px;font-weight:600;display:flex;gap:5px;align-items:center}#sd-cats button.on{background:var(--acc2);border-color:var(--acc2)}
+#sd-panel{padding-bottom:74px}.sd-card h3{margin-top:0}
+#sd-bar{position:fixed;left:8px;right:8px;bottom:calc(66px + env(safe-area-inset-bottom));display:flex;gap:6px;align-items:center;background:#0e1626f5;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid #ffffff1a;border-radius:16px;padding:7px;z-index:7;box-shadow:0 8px 24px #000a}
+#sd-bar .btn{padding:11px 13px}#sd-bar .sd-cost{flex:1;text-align:center;line-height:1.15}#sd-bar .sd-cost b{display:block;font-size:16px}#sd-bar .sd-cost small{color:var(--mut);font-size:11px}
+.sd-chips{display:flex;gap:6px;overflow-x:auto;margin-bottom:10px}.sd-chips button{flex:1 0 auto;background:var(--card2);border:1px solid #ffffff14;color:var(--txt);border-radius:20px;padding:8px 12px;font-size:12.5px;font-weight:600}.sd-chips button.on{border-color:var(--acc);color:var(--acc)}
+.sd-sl{margin:8px 0}.sd-sl label{display:flex;justify-content:space-between;font-size:13px;color:var(--mut);margin-bottom:2px}.sd-sl label b{color:var(--txt)}
+.sd-sl input[type=range]{height:30px}
+.sd-tg{width:50px;height:30px;border-radius:20px;border:0;background:#334155;position:relative;flex:none}.sd-tg i{position:absolute;top:3px;left:3px;width:24px;height:24px;border-radius:50%;background:#fff;transition:.2s}.sd-tg.on{background:var(--acc)}.sd-tg.on i{left:23px}
+.sd-stp{display:flex;align-items:center;gap:8px}.sd-stp button{width:36px;height:34px;border-radius:10px;border:1px solid #ffffff1a;background:var(--card2);color:var(--txt);font-size:18px}.sd-stp b{min-width:28px;text-align:center}
+.sd-sw{display:flex;flex-wrap:wrap;gap:7px}.sd-sw button{width:34px;height:34px;border-radius:50%;border:2px solid #ffffff30;font-weight:800;font-size:12px;color:#000a}.sd-sw button.on{border-color:var(--acc);box-shadow:0 0 0 2px var(--acc)}.sd-sw input{width:34px;height:34px;border:0;background:none;padding:0}
+.sd-tpl{display:grid;grid-template-columns:1fr 1fr;gap:8px}.sd-tpl button{text-align:left;background:var(--card2);border:1px solid #ffffff12;color:var(--txt);border-radius:12px;padding:10px;display:flex;flex-direction:column;gap:3px}.sd-tpl button.on{border-color:var(--acc);box-shadow:0 0 0 1px var(--acc) inset}
+.sd-tpl b{font-size:13.5px}.sd-tpl small{color:var(--mut);font-size:11.5px;line-height:1.3}.sd-tpl span{font-size:11.5px;color:var(--acc);font-weight:700}
+.sd-pal{display:grid;grid-template-columns:repeat(3,1fr);gap:7px}.sd-pal button{background:var(--card2);border:1px solid #ffffff12;color:var(--txt);border-radius:12px;padding:8px 5px;display:flex;flex-direction:column;align-items:center;gap:2px;text-align:center}.sd-pal button.on{border-color:var(--acc)}
+.sd-pal span{font-size:22px}.sd-pal b{font-size:11.5px;line-height:1.2}.sd-pal small{font-size:10.5px;color:var(--acc)}.sd-pal small.mut{color:var(--mut);font-size:9.5px}
+.sd-btns{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}.sd-btns .btn{flex:1}
+.sd-in{width:100%;background:var(--card2);border:1px solid #ffffff1f;color:var(--txt);border-radius:10px;padding:9px;font-size:15px}
+.sd-job{padding:4px 0 8px}
+.sd-photo{position:fixed;inset:0;background:#000e;z-index:50;display:flex;flex-direction:column;justify-content:center;gap:10px;padding:calc(env(safe-area-inset-top) + 10px) 10px calc(env(safe-area-inset-bottom) + 10px)}.sd-photo img{width:100%;max-height:75vh;object-fit:contain;border-radius:12px}.sd-ph-bar{display:flex;gap:8px}.sd-ph-bar .btn{flex:1;text-align:center;text-decoration:none}
+.seg button small{display:block;font-weight:500}
+body:has(#sd-bar) #toast{bottom:calc(140px + env(safe-area-inset-bottom))}
