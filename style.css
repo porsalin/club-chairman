@@ -1,0 +1,29 @@
+:root{--bg:#0b1220;--card:#141d30;--card2:#1b2740;--acc:#22d3a6;--acc2:#3b82f6;--txt:#e6edf7;--mut:#8a9ab5;--bad:#f87171;--warn:#fbbf24}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;background:var(--bg);color:var(--txt);font:15px/1.4 -apple-system,system-ui,Segoe UI,Roboto,sans-serif;overscroll-behavior:none}
+header{position:sticky;top:0;z-index:5;display:flex;justify-content:space-between;align-items:center;padding:calc(env(safe-area-inset-top) + 10px) 16px 10px;background:linear-gradient(180deg,#0b1220,#0b1220e8);backdrop-filter:blur(10px);border-bottom:1px solid #ffffff10}
+#clubname{font-weight:800;font-size:17px}#cash{font-weight:700;color:var(--acc)}
+main{padding:12px 12px calc(84px + env(safe-area-inset-bottom))}
+nav{position:fixed;bottom:0;left:0;right:0;display:flex;background:#0e1626f2;backdrop-filter:blur(12px);border-top:1px solid #ffffff14;padding-bottom:env(safe-area-inset-bottom);z-index:6}
+nav button{flex:1;background:none;border:0;color:var(--mut);padding:8px 0 10px;font-size:10.5px;display:flex;flex-direction:column;align-items:center;gap:2px}
+nav button span{font-size:20px}nav button.on{color:var(--acc)}
+.card{background:linear-gradient(160deg,var(--card),#111a2b);border:1px solid #ffffff0d;border-radius:16px;padding:14px;margin-bottom:12px;box-shadow:0 6px 20px #0005}
+h2{margin:0 0 10px;font-size:18px}h3{margin:0 0 8px;font-size:15px;color:var(--mut);text-transform:uppercase;letter-spacing:.06em;font-size:12px}
+.row{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:7px 0;border-bottom:1px solid #ffffff08}.row:last-child{border:0}
+.mut{color:var(--mut);font-size:13px}.good{color:var(--acc)}.bad{color:var(--bad)}.warn{color:var(--warn)}
+.btn{background:linear-gradient(135deg,var(--acc),#10b981);color:#04221a;border:0;border-radius:12px;padding:10px 14px;font-weight:700;font-size:14px}
+.btn.sec{background:var(--card2);color:var(--txt);border:1px solid #ffffff14}.btn.red{background:#3a1820;color:var(--bad)}
+.btn:disabled{opacity:.4}.btn.big{width:100%;padding:14px;font-size:16px;margin-top:6px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.stat{background:var(--card2);border-radius:12px;padding:10px}.stat b{display:block;font-size:19px}.stat small{color:var(--mut)}
+.bar{height:7px;background:#ffffff12;border-radius:9px;overflow:hidden;margin-top:4px}.bar i{display:block;height:100%;background:linear-gradient(90deg,var(--acc2),var(--acc))}
+table{width:100%;border-collapse:collapse;font-size:13px}td,th{padding:6px 4px;text-align:center}th{color:var(--mut);font-weight:600}td:nth-child(2),th:nth-child(2){text-align:left}tr.me{background:#22d3a622;font-weight:700}
+.seg{display:flex;background:var(--card2);border-radius:10px;padding:3px;gap:3px;flex-wrap:wrap}.seg button{flex:1;border:0;background:none;color:var(--mut);padding:8px 4px;border-radius:8px;font-size:12.5px;font-weight:600;min-width:52px}.seg button.on{background:var(--acc2);color:#fff}
+#stadwrap{position:relative;border-radius:16px;overflow:hidden;background:#0a1a12;touch-action:none}
+canvas{display:block;width:100%}
+.legend{display:flex;gap:6px;overflow-x:auto;padding:8px 0}.chip{flex:none;background:var(--card2);border-radius:20px;padding:6px 11px;font-size:12px;border:1px solid #ffffff10}.chip.on{border-color:var(--acc);color:var(--acc)}
+#toast{position:fixed;left:50%;bottom:calc(96px + env(safe-area-inset-bottom));transform:translateX(-50%) translateY(20px);opacity:0;background:#1f2b45;padding:10px 16px;border-radius:12px;transition:.3s;z-index:9;max-width:90%;text-align:center;font-size:14px}#toast.on{opacity:1;transform:translateX(-50%)}
+.clubc{display:flex;align-items:center;gap:12px}.crest{width:42px;height:42px;border-radius:12px;display:grid;place-items:center;font-weight:800;color:#fff;flex:none}
+.hero{text-align:center;padding:30px 10px}.hero h1{font-size:30px;margin:6px 0;background:linear-gradient(90deg,var(--acc),var(--acc2));-webkit-background-clip:text;color:transparent}
+.res{font-size:13px}.pill{display:inline-block;padding:2px 8px;border-radius:8px;font-size:11px;font-weight:700}.W{background:#14532d;color:#86efac}.D{background:#3f3f46;color:#e4e4e7}.L{background:#4c1d1d;color:#fca5a5}
+input[type=range]{width:100%;accent-color:var(--acc)}
