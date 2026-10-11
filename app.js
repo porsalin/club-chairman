@@ -122,7 +122,7 @@ const TABS=[['home','🏠','Club'],['stadium','🏟️','Stadium'],['staff','�
 function render(){if(!G){renderPicker();return}
  $('#clubname').innerHTML=`<span style="color:${me().col}">●</span> ${me().name}`;$('#cash').textContent=fmt(G.cash);$('#cash').className=G.cash<0?'bad':'';
  $('#tabs').innerHTML=TABS.map(([k,i,n])=>`<button class="${tab===k?'on':''}" onclick="go('${k}')"><span>${i}</span>${n}</button>`).join('');
- ({home:vHome,stadium:vStadium,staff:vStaff,fac:vFac,league:vLeague,money:vMoney})[tab]()}
+ ({home:vHome,stadium:vStadium,staff:vStaff,fac:vFac,league:vLeague,money:vMoney,hist:window.vHist||vHome})[tab]()}
 function go(t){tab=t;window.scrollTo(0,0);render()}
 function renderPicker(){$('#tabs').innerHTML='';$('#cash').textContent='';
  $('#view').innerHTML=`<div class="hero"><div style="font-size:54px">⚽🏟️</div><h1>Club Chairman</h1><div class="mut">Buy a club. Build a stadium. Build a legacy.</div></div>
