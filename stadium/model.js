@@ -190,7 +190,7 @@ SD.migrate=S=>{const d=SD.blank(),scale=x=>x;const rmap={none:'none',partial:'pa
  if(g.shop===1)add('shop',-5,-4);if(g.shop>=2)add('megastore',-6,-4);if(g.museum)add('museum',3,-6);
  d._auto=1;
  let kiosks=0,boxes=0;for(const k in (S.stands||{}))kiosks+=S.stands[k].kiosks||0;d.ops.kiosks=Math.max(4,kiosks);
- d.jobs0=(S.queue||[]).filter(q=>q.left>0).map(q=>({key:q.target?'stand:'+q.key:q.glob?'old:'+q.glob:'pitch',label:q.label,left:q.left,total:q.left}));
+ d.jobs0=(S.queue||[]).filter(q=>q.left>0).map(q=>({key:q.target?'stand:'+q.key:q.glob?'old:'+q.glob:'pitch',label:q.label,left:q.left,total:q.left,glob:q.glob,pitch:q.pitch}));
  return d};
 SD.ensure=()=>{if(typeof G==='undefined'||!G||!G.stad)return null;const S=G.stad;if(!S.design){const d=SD.migrate(S);S.jobs=d.jobs0||[];delete d.jobs0;S.design=d;S.designs=S.designs||[];S.queue=[];SD.validateSite(d);if(d._auto){delete d._auto;[['turnstiles',-1.57],['turnstiles',1.57],['turnstiles',0],['turnstiles',3.14],['stair',0.8],['stair',-2.3],['plaza',-1.2]].forEach(([t,a])=>SD.autoPlace(d,t,a))}{const raw=SD.stats(d).raw;d.ops.toilets=Math.max(d.ops.toilets,Math.ceil(raw/560));d.ops.kiosks=Math.max(d.ops.kiosks,Math.ceil(raw/1600));if(raw>30000){d.ops.police=1;d.ops.stewards=2}}SD.syncGlobal()}
  S.design=SD.normalize(S.design);S.jobs=S.jobs||[];S.designs=S.designs||[];return S.design};
@@ -218,7 +218,7 @@ window.stadiumStats=function(S){if(!S||!S.design)return baseStats(S);const st=SD
  return{cap:st.cap,atm:st.atm,hosp:st.hosp,food:st.food,comfort:st.comfort,pitchQ:st.pitchQ,access:st.access,safety:st.safety,prestige:st.prestige}};
 window.roofCover=function(){const S=G&&G.stad;if(!S||!S.design)return 0;return SD.live(S).cov};
 SD.tick=()=>{const S=G.stad;if(!S.design)return;const done=[];const started=[];S.jobs=S.jobs.filter(j=>{if(j.wait>0){j.wait--;if(!j.wait&&j.key.startsWith('stand:'))started.push(j);return true}j.left--;if(j.left<=0){done.push(j);return false}return true});started.forEach(j=>G.log.unshift('🚧 Work starts: '+j.label));if(!S.jobs.some(j=>j.wait>0))S.prev=null;
- done.forEach(j=>{G.log.unshift('🏗️ Complete: '+j.label)});if(done.length&&window.toast)setTimeout(()=>toast('🏗️ '+done[0].label+' complete'+(done.length>1?' (+'+(done.length-1)+')':'')),1200);
+ done.forEach(j=>{const d=S.design;if(j.glob==='lights')d.lightLevel=Math.min(3,d.lightLevel+1);if(j.glob==='screens')d.extras.screens=[1,2,4,4][Math.min(3,[0,1,2,4].indexOf(d.extras.screens)+0)]||d.extras.screens;if(j.glob==='heating')d.pitch.heating=1;if(j.pitch)d.pitch.surface=j.pitch;if(j.glob&&!['lights','screens','heating'].includes(j.glob)){const t={parking:'carpark',transport:'bus',shop:'shop',museum:'museum'}[j.glob];if(t)SD.autoPlace(d,t,Math.random()*6.28)}G.log.unshift('🏗️ Complete: '+j.label)});if(done.length&&window.toast)setTimeout(()=>toast('🏗️ '+done[0].label+' complete'+(done.length>1?' (+'+(done.length-1)+')':'')),1200);
  if(S.relocate){S.relocate.left--;if(S.relocate.left<=0){S.design=S.relocate.design;S.jobs=[];G.cash+=S.relocate.sale||0;G.log.unshift('🚚 Moved into the new stadium! Old ground sold for '+fmt(S.relocate.sale||0));S.relocate=null}}
  const st=SD.live(S);G.cash-=st.maint;G.cash+=st.inc;const L=G.ledger&&G.ledger[0];if(L&&L.parts&&!L.parts.stadium){L.out=Math.round(L.out+st.maint);L.income=Math.round(L.income+st.inc);L.parts.stadium=st.maint;if(st.inc)L.parts.property=st.inc}
  SD.syncGlobal()};

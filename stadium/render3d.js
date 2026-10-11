@@ -143,7 +143,9 @@ function buildRoof(seg,ctx,G2){const st=seg.st,sec=seg.sec,pts=seg.pts,n=pts.len
   const g=new THREE.BufferGeometry();g.setAttribute('position',new THREE.Float32BufferAttribute(lp,3));cables=new THREE.LineSegments(g,ctx.mats.cable)}
  return{roof,poly,steel,cables,dF,hf,hb,dB}}
 // ---------- main build ----------
-function disposeGroup(g){g.traverse(o=>{if(o.geometry)o.geometry.dispose()})}
+function disposeGroup(g){const keepM=new Set(Object.values(R.M||{}));for(const k in R)if(k.startsWith('fm'))keepM.add(R[k]);const keepT=new Set(Object.values(TEX));
+ const mats=new Set();g.traverse(o=>{if(o.geometry)o.geometry.dispose();if(o.material)(Array.isArray(o.material)?o.material:[o.material]).forEach(m=>mats.add(m))});
+ mats.forEach(m=>{if(keepM.has(m))return;for(const t of['map','emissiveMap'])if(m[t]&&!keepT.has(m[t]))m[t].dispose();m.dispose()})}
 function mats(){if(R.M)return R.M;const M={};const std=o=>new THREE.MeshStandardMaterial(Object.assign({roughness:.85,metalness:0},o));
  M.body=std({vertexColors:true,roughness:.92});M.seats=std({vertexColors:true,map:seatTex(),roughness:.8});M.crowd=std({vertexColors:true,map:crowdTex(),roughness:.9});
  M.glass=std({vertexColors:true,roughness:.15,metalness:.4,emissive:C('#ffd38a'),emissiveIntensity:0});M.roof=std({vertexColors:true,roughness:.6,metalness:.25,side:THREE.DoubleSide});
