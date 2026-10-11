@@ -303,5 +303,5 @@ function tapAt(e){const cv=$('#cv'),b=cv.getBoundingClientRect(),W=b.width,H=b.h
 const _adv=advance;
 advance=function(){G.stad.queue.forEach(q=>q.done=()=>finishJob(q));_adv()};
 window.addEventListener('resize',()=>{if(tab==='stadium')drawStadium()});
-load();if(G&&G.stad)G.stad.queue.forEach(q=>delete q.done);render();
+load();if(G&&G.stad)G.stad.queue.forEach(q=>delete q.done);
 if('serviceWorker'in navigator)navigator.serviceWorker.register('sw.js').catch(()=>{});
